@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Random;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -36,11 +38,11 @@ public class BaseGameplay extends AppCompatActivity {
 
     int userScore;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userScore=0;
-
     }
     public void moveImageViewUpAndDown(int hole, ImageView imageView, int imageBeforeHit){
 

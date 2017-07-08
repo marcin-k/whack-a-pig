@@ -23,7 +23,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Gameplay1" />
         <activity android:name=".Gameplay2" />
-        <activity android:name=".Gameplay1alt"></activity>
+        <activity android:name=".Gameplay1alt" />
+        <activity android:name=".Gameplay2alt"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
 package com.mvk.pig_whack;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
@@ -15,31 +14,30 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class Gameplay1alt extends BaseGameplay {
+public class Gameplay2alt extends BaseGameplay {
 
-    @BindView(R.id.g1alt_head_hole_1) ImageView headHole1;
+    @BindView(R.id.g1alt_head_hole_1)
+    ImageView headHole1;
     @BindView(R.id.g1alt_head_hole_2) ImageView headHole2;
     @BindView(R.id.g1alt_head_hole_3) ImageView headHole3;
     @BindView(R.id.g1alt_head_hole_4) ImageView headHole4;
     @BindView(R.id.g1alt_head_hole_5) ImageView headHole5;
 
-    @BindView(R.id.g1alt_score_label) TextView scoreLabel;
+    @BindView(R.id.g1alt_score_label)
+    TextView scoreLabel;
     @BindView(R.id.g1alt_score) TextView score;
     @BindView(R.id.g1alt_counter) TextView counter;
 
     boolean alternativeSizeScreen = true;
-
-    long timeToPlay  = 47;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getResources().getDisplayMetrics().densityDpi > 410){
-            setContentView(R.layout.activity_gameplay1);
+            setContentView(R.layout.activity_gameplay2);
             alternativeSizeScreen = false;
         }
         else{
-            setContentView(R.layout.activity_gameplay1alt);
+            setContentView(R.layout.activity_gameplay2alt);
         }
 
         ButterKnife.bind(this);
@@ -54,13 +52,12 @@ public class Gameplay1alt extends BaseGameplay {
         timeHandler.postDelayed(timeRunnable, 0);
         pigsHandler.postDelayed(pigMoveRunnable, 0);
     }
-
     //--------------------------Alternative Layout Methods-------------------------------------
     //On hit methods for each hole
     //--------Head - Hole 1---------------
     @OnClick(R.id.g1alt_head_hole_1)
     public void hitPig1(){
-        headHole1.setImageResource(R.drawable.head_dizzy);
+        headHole1.setImageResource(R.drawable.head_dizzy_space);
         //prevents from multiply points for same pig
         if(canScoreHole1){
             canScoreHole1=false;
@@ -71,7 +68,7 @@ public class Gameplay1alt extends BaseGameplay {
     //--------Head - Hole 2---------------
     @OnClick(R.id.g1alt_head_hole_2)
     public void hitPig2(){
-        headHole2.setImageResource(R.drawable.head_dizzy);
+        headHole2.setImageResource(R.drawable.head_dizzy_space);
         //prevents from multiply points for same pig
         if(canScoreHole2){
             canScoreHole2=false;
@@ -82,7 +79,7 @@ public class Gameplay1alt extends BaseGameplay {
     //--------Head - Hole 3---------------
     @OnClick(R.id.g1alt_head_hole_3)
     public void hitPig3(){
-        headHole3.setImageResource(R.drawable.head_dizzy);
+        headHole3.setImageResource(R.drawable.head_dizzy_space);
         //prevents from multiply points for same pig
         if(canScoreHole3){
             canScoreHole3=false;
@@ -93,7 +90,7 @@ public class Gameplay1alt extends BaseGameplay {
     //--------Head - Hole 4---------------
     @OnClick(R.id.g1alt_head_hole_4)
     public void hitPig4(){
-        headHole4.setImageResource(R.drawable.head_dizzy);
+        headHole4.setImageResource(R.drawable.head_dizzy_space);
         //prevents from multiply points for same pig
         if(canScoreHole4){
             canScoreHole4=false;
@@ -104,7 +101,7 @@ public class Gameplay1alt extends BaseGameplay {
     //--------Head - Hole 5---------------
     @OnClick(R.id.g1alt_head_hole_5)
     public void hitPig5(){
-        headHole5.setImageResource(R.drawable.head_dizzy);
+        headHole5.setImageResource(R.drawable.head_dizzy_space);
         //prevents from multiply points for same pig
         if(canScoreHole5){
             canScoreHole5=false;
@@ -136,10 +133,9 @@ public class Gameplay1alt extends BaseGameplay {
                 timeHandler.postDelayed(this, 1000);
             }
             if(timeToPlay==0){
-                //TODO:try to add delay move to correct screen
+                //TODO:Finish game screen
                 //wait 1.5 sec and move to next level
 
-                moveToGameplay2();
             }
         }
     };
@@ -193,34 +189,22 @@ public class Gameplay1alt extends BaseGameplay {
     public void moveUp(int hole){
         switch (hole){
             case 1:
-                moveImageViewUpAndDown(1,headHole1, R.drawable.head);
+                moveImageViewUpAndDown(1,headHole1, R.drawable.head_space);
                 break;
             case 2:
-                moveImageViewUpAndDown(2,headHole2, R.drawable.head);
+                moveImageViewUpAndDown(2,headHole2, R.drawable.head_space);
                 break;
             case 3:
-                moveImageViewUpAndDown(3,headHole3, R.drawable.head);
+                moveImageViewUpAndDown(3,headHole3, R.drawable.head_space);
                 break;
             case 4:
-                moveImageViewUpAndDown(4,headHole4, R.drawable.head);
+                moveImageViewUpAndDown(4,headHole4, R.drawable.head_space);
                 break;
             case 5:
-                moveImageViewUpAndDown(5,headHole5, R.drawable.head);
+                moveImageViewUpAndDown(5,headHole5, R.drawable.head_space);
                 break;
             default:
                 break;
         }
-    }
-    private void moveToGameplay2(){
-        Intent intent;
-        //Load correct class based on the screen dpi
-        intent = alternativeSizeScreen ?  new Intent(this, Gameplay2alt.class) : new Intent(this, Gameplay2.class);
-//        if(getResources().getDisplayMetrics().densityDpi > 410){
-//            intent = new Intent(this, Gameplay2.class);
-//        }
-//        else{
-//            intent = new Intent(this, Gameplay2alt.class);
-//        }
-        startActivity(intent);
     }
 }

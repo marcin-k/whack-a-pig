@@ -17,7 +17,7 @@ import butterknife.OnClick;
 
 public class Gameplay0 extends BaseGameplay {
 
-    long timeToPlay = 6;
+    long timeToPlay = 27;
 
 
     @BindView(R.id.g0_head_hole_1) ImageView headHole1;
