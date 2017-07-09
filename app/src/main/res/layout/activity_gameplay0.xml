@@ -31,7 +31,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/g0_head_hole_5"
+        app:layout_constraintBottom_toBottomOf="@+id/head_hole_5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +40,7 @@
         app:layout_constraintVertical_bias="0.67" />
 
     <ImageView
-        android:id="@+id/g0_head_hole_5"
+        android:id="@+id/head_hole_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -83,7 +83,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/g0_head_hole_4"
+        app:layout_constraintBottom_toBottomOf="@+id/head_hole_4"
         app:layout_constraintHorizontal_bias="0.936"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -92,7 +92,7 @@
         app:srcCompat="@drawable/g0_h1_back" />
 
     <ImageView
-        android:id="@+id/g0_head_hole_4"
+        android:id="@+id/head_hole_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -153,7 +153,7 @@
         app:srcCompat="@drawable/g0_h1_back"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/g0_head_hole_3"
+        app:layout_constraintBottom_toBottomOf="@+id/head_hole_3"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -163,7 +163,7 @@
         app:layout_constraintVertical_bias="0.81" />
 
     <ImageView
-        android:id="@+id/g0_head_hole_3"
+        android:id="@+id/head_hole_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/head"
@@ -196,7 +196,7 @@
         app:layout_constraintVertical_bias="0.707" />
 
     <TextView
-        android:id="@+id/g0_score_label"
+        android:id="@+id/score_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -230,7 +230,7 @@
         app:srcCompat="@drawable/g0_h1_back" />
 
     <ImageView
-        android:id="@+id/g0_head_hole_2"
+        android:id="@+id/head_hole_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -282,7 +282,7 @@
         app:layout_constraintVertical_bias="0.8" />
 
     <ImageView
-        android:id="@+id/g0_head_hole_1"
+        android:id="@+id/head_hole_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/head"
@@ -318,7 +318,7 @@
         app:layout_constraintVertical_bias="0.95" />
 
     <TextView
-        android:id="@+id/g0_score"
+        android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -368,7 +368,7 @@
         app:layout_constraintVertical_bias="0.822" />
 
     <TextView
-        android:id="@+id/g0_counter"
+        android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
