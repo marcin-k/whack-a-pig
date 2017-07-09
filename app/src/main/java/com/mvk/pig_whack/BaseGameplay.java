@@ -25,7 +25,7 @@ public class BaseGameplay extends AppCompatActivity {
     public int durationDownMove = 500;
 
     int nextGameplayScreen = 1;
-    long timeToPlay = 7;
+    long timeToPlay = 8;
     int userScore=0;
 
     int pigImageBeforeHit = R.drawable.head;
@@ -126,12 +126,6 @@ public class BaseGameplay extends AppCompatActivity {
             if(timeToPlay!=0){
                 timeHandler.postDelayed(this, 1000);
             }
-            if(timeToPlay==0){
-                //TODO:try to add delay move to correct screen
-                //wait 1.5 sec and move to next level
-
-                moveToNextGamePlay();
-            }
         }
     };
 
@@ -179,6 +173,10 @@ public class BaseGameplay extends AppCompatActivity {
 
             if(timeToPlay>0){
                 pigsHandler.postDelayed(this, TIME_BETWEEN_POP_UPS);
+            }
+            else{
+                pigsHandler.removeCallbacks(pigMoveRunnable);
+                moveToNextGamePlay();
             }
         }
     };
@@ -299,7 +297,7 @@ public class BaseGameplay extends AppCompatActivity {
 
 
     //Creates intent based on screen dpi and currently displayed screen
-    private void moveToNextGamePlay(){
+    public void moveToNextGamePlay(){
 
         Intent intent= new Intent();
         //Load correct class based on the screen dpi
@@ -334,5 +332,26 @@ public class BaseGameplay extends AppCompatActivity {
             }
         }
         startActivity(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        pigsHandler.removeCallbacks(pigMoveRunnable);
+        timeHandler.removeCallbacks(timeRunnable);
+    }
+    @Override
+    protected void onResume() {
+        String action = getIntent().getAction();
+        // Prevent endless loop by adding a unique action, don't restart if action is present
+        if(action == null || !action.equals("Already created")) {
+            Intent intent = new Intent(this, WelcomeScreen.class);
+            startActivity(intent);
+            finish();
+        }
+        // Remove the unique action so the next time onResume is called it will restart
+        else
+            getIntent().setAction(null);
+        super.onResume();
     }
 }

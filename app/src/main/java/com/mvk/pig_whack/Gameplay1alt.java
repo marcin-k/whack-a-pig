@@ -1,5 +1,6 @@
 package com.mvk.pig_whack;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -9,11 +10,12 @@ import butterknife.OnClick;
 
 public class Gameplay1alt extends BaseGameplay {
 
-    long timeToPlay  = 7;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if(getResources().getDisplayMetrics().densityDpi > 410){
             setContentView(R.layout.activity_gameplay1);
             alternativeSizeScreen = false;
@@ -36,5 +38,8 @@ public class Gameplay1alt extends BaseGameplay {
 
         nextGameplayScreen = 2;
         onlyOneHeadUp = false;
+
+        //to prevent initial screen when switching activities
+        getIntent().setAction("Already created");
     }
 }
