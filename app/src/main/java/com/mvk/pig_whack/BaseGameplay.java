@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,16 +21,27 @@ import butterknife.OnClick;
 
 public class BaseGameplay extends AppCompatActivity {
 
-    public final int TIME_BETWEEN_POP_UPS = 2000;
-    public int durationUpMove = 1000;
-    public int durationDownMove = 500;
+    public final int TIME_BETWEEN_POP_UPS = Controller.getInstance().getTIME_BETWEEN_POP_UPS();
+    public int durationUpMove = Controller.getInstance().getDurationUpMove();
+    public int durationDownMove = Controller.getInstance().getDurationDownMove();
 
-    int nextGameplayScreen = 1;
-    long timeToPlay = 8;
-    int userScore=0;
+
+    //time of each round defined in seconds
+    long timeToPlay = 30;
+//    int userScore=0;
 
     int pigImageBeforeHit = R.drawable.head;
     int pigImageAfterHit = R.drawable.head_dizzy;
+
+    int currentScreen = 0;
+    //------Screens:
+    //0 - activity_welcome_screen
+    //1 - activity_gameplay0
+    //2 - activity_gameplay1
+    //3 - activity_gameplay1alt
+    //4 - activity_gameplay2
+    //5 - activity_gameplay2alt
+    //99 - activity_end_screen
 
     //to allow one or two heads up at the same time
     boolean onlyOneHeadUp = true;
@@ -188,8 +200,8 @@ public class BaseGameplay extends AppCompatActivity {
     //changes the sprite image after hit and increment score
     public void changePigSpriteAndUpdateScore(ImageView headHole){
         headHole.setImageResource(pigImageAfterHit);
-        userScore++;
-        score.setText(userScore+"");
+        Controller.getInstance().increaseScore();
+        score.setText(Controller.getInstance().getScore()+"");
     }
 
     //Method called by runnable in easy to override form, so pig head can
@@ -283,6 +295,28 @@ public class BaseGameplay extends AppCompatActivity {
                 break;
         }
 
+        Log.d("Movement",hole+" "+imageView.getDrawable()+" - "+getResources().getDrawable(R.drawable.head_space));
+
+        //reducing by 20% heads movements for pigs on alternative screens pigs from hole 2 and 4
+        if((hole==2 || hole==4)&&currentScreen==5){
+            pointToMove = 0.8f * pointToMove;
+        }
+
+        //reduce by 10% head movements for pigs on gameplay 2 all holes except hole 1
+        if((hole!=1 && currentScreen==2)){
+            pointToMove = 0.9f * pointToMove;
+        }
+
+        //reduce by 10% head movements for pigs on gameplay 3 for holes: 1,2,3,6,7
+        if((currentScreen==4 && (hole!=4|| hole!=5))){
+            pointToMove = 0.9f * pointToMove;
+        }
+
+        //reduce by 15% head movements for pigs on gameplay 3 for hole 3
+        if(currentScreen==4 && hole==3){
+            pointToMove = 0.85f * pointToMove;
+        }
+
         ObjectAnimator moveUp = ObjectAnimator.ofFloat(imageView, "y", imageView.getY(), imageView.getY()-pointToMove);
         ObjectAnimator moveDown = ObjectAnimator.ofFloat(imageView, "y", imageView.getY()-pointToMove, imageView.getY());
 
@@ -302,7 +336,7 @@ public class BaseGameplay extends AppCompatActivity {
         Intent intent= new Intent();
         //Load correct class based on the screen dpi
         if(getResources().getDisplayMetrics().densityDpi > 410){
-            switch (nextGameplayScreen){
+            switch (Controller.getInstance().getNextScreen()){
                 case 0:
                     intent = new Intent(this, Gameplay0.class);
                     break;
@@ -312,12 +346,17 @@ public class BaseGameplay extends AppCompatActivity {
                 case 2:
                     intent = new Intent(this, Gameplay2.class);
                     break;
+
+                case 99:
+                    intent = new Intent(this, EndScreen.class);
+                    break;
+
                 default:
                     break;
             }
         }
         else{
-            switch (nextGameplayScreen){
+            switch (Controller.getInstance().getNextScreen()){
                 case 0:
                     intent = new Intent(this, Gameplay0.class);
                     break;
@@ -326,6 +365,9 @@ public class BaseGameplay extends AppCompatActivity {
                     break;
                 case 2:
                     intent = new Intent(this, Gameplay2alt.class);
+                    break;
+                case 99:
+                    intent = new Intent(this, EndScreen.class);
                     break;
                 default:
                     break;
@@ -346,6 +388,7 @@ public class BaseGameplay extends AppCompatActivity {
         // Prevent endless loop by adding a unique action, don't restart if action is present
         if(action == null || !action.equals("Already created")) {
             Intent intent = new Intent(this, WelcomeScreen.class);
+            Controller.getInstance().playAgain();
             startActivity(intent);
             finish();
         }

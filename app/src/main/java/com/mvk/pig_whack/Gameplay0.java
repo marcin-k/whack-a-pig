@@ -33,7 +33,9 @@ public class Gameplay0 extends BaseGameplay {
         //to prevent initial screen when switching activities
         getIntent().setAction("Already created");
 
-
+        //preserve the score on new gameplay screen
+        score.setText(Controller.getInstance().getScore()+"");
+        currentScreen=1;
     }
 
 

@@ -19,9 +19,11 @@ public class Gameplay1alt extends BaseGameplay {
         if(getResources().getDisplayMetrics().densityDpi > 410){
             setContentView(R.layout.activity_gameplay1);
             alternativeSizeScreen = false;
+            currentScreen=2;
         }
         else{
             setContentView(R.layout.activity_gameplay1alt);
+            currentScreen=3;
         }
 
         ButterKnife.bind(this);
@@ -36,10 +38,13 @@ public class Gameplay1alt extends BaseGameplay {
         timeHandler.postDelayed(timeRunnable, 0);
         pigsHandler.postDelayed(pigMoveRunnable, 0);
 
-        nextGameplayScreen = 2;
+
         onlyOneHeadUp = false;
 
         //to prevent initial screen when switching activities
         getIntent().setAction("Already created");
+
+        //preserve the score on new gameplay screen
+        score.setText(Controller.getInstance().getScore()+"");
     }
 }
