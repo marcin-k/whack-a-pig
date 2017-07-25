@@ -1,10 +1,17 @@
 package com.mvk.pig_whack;
 
+import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -24,6 +31,7 @@ public class Gameplay0 extends BaseGameplay {
         score.setTypeface(frijole);
         counter.setTypeface(frijole);
 
+
         //--------------Runnable for time and head movements------------------
         timeHandler.postDelayed(timeRunnable, 0);
         pigsHandler.postDelayed(pigMoveRunnable, 0);
@@ -36,18 +44,10 @@ public class Gameplay0 extends BaseGameplay {
         //preserve the score on new gameplay screen
         score.setText(Controller.getInstance().getScore()+"");
         currentScreen=1;
+
+        //--------------------------------------------------------------------------
+        animateRoundLabel();
+        //--------------------------------------------------------------------------
     }
-
-
-//    //TODO: fix that
-//    //on pause stop game go to welcome screen
-//    @Override
-//    public void onPause() {
-//        pigsHandler.removeCallbacks(pigMoveRunnable);
-//        timeHandler.removeCallbacks(timeRunnable);
-////        Intent intent = new Intent(this, WelcomeScreen.class);
-////        startActivity(intent);
-//        super.onPause();
-//    }
 
 }

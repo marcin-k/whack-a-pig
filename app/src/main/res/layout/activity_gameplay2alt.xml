@@ -66,8 +66,8 @@
 
     <ImageView
         android:id="@+id/g1alt_h5_front"
-        android:layout_width="178dp"
-        android:layout_height="127dp"
+        android:layout_width="188dp"
+        android:layout_height="96dp"
 
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="0dp"
@@ -80,10 +80,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/front_space_hole_5"
-        app:layout_constraintHorizontal_bias="0.112"
-        app:layout_constraintVertical_bias="0.273"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintVertical_bias="0.283"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        tools:layout_editor_absoluteY="137dp" />
 
     <ImageView
         android:id="@+id/g1alt_h4_back"
@@ -203,16 +204,13 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
         android:text="Score"
         android:textColor="#CCD0B8"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintHorizontal_bias="0.729"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.995"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -365,5 +363,39 @@
         app:layout_constraintVertical_bias="0.987"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
+    <TextView
+        android:id="@+id/round"
+        android:layout_width="119dp"
+        android:layout_height="39dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.377"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041" />
+    <TextView
+        android:id="@+id/roundNumber"
+        android:layout_width="57dp"
+        android:layout_height="41dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.684"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041" />
 
 </android.support.constraint.ConstraintLayout>

@@ -40,10 +40,14 @@ public class EndScreen extends AppCompatActivity {
 
     @OnClick(R.id.playAgainButton)
     public void playAgain(){
+//        Controller.getInstance().playAgain();
+//        Intent intent = new Intent();
+//        intent = new Intent(this, Gameplay0.class);
+//        startActivity(intent);
+        Intent intent = new Intent(this, WelcomeScreen.class);
         Controller.getInstance().playAgain();
-        Intent intent = new Intent();
-        intent = new Intent(this, Gameplay0.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

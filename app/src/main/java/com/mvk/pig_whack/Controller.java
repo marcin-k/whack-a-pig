@@ -21,14 +21,22 @@ class Controller {
     private int score;
     private int scorePoint;
 
-    //Constructor
-    private Controller() {
+    void setupGame(){
         score=0;
         scorePoint=10;
         nextScreen = 0;
-        TIME_BETWEEN_POP_UPS = 2000;
-        durationUpMove = 1000;
+        TIME_BETWEEN_POP_UPS = 1750;
+        durationUpMove = 850;
         durationDownMove = 500;
+    }
+
+    //Constructor
+    private Controller() {
+        setupGame();
+    }
+
+    public int getRoundNumber(){
+        return 1+nextScreen;
     }
 
     public int getNextScreen(){
@@ -71,12 +79,7 @@ class Controller {
         score=score+scorePoint;
     }
     public void playAgain(){
-        score=0;
-        scorePoint=10;
-        nextScreen = 0;
-        TIME_BETWEEN_POP_UPS = 2000;
-        durationUpMove = 1000;
-        durationDownMove = 500;
+        setupGame();
     }
     public int getScore(){
         return score;

@@ -39,14 +39,14 @@
 
     <TextView
         android:id="@+id/pigWhack"
-        android:layout_width="181dp"
-        android:layout_height="75dp"
+        android:layout_width="238dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="serif"
         android:rotation="3"
-        android:text="Pig whack"
+        android:text="Whack a Pig"
         android:textColor="#CA1E1E"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,6 +55,8 @@
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.366"
-        app:layout_constraintHorizontal_bias="0.503" />
+        app:layout_constraintHorizontal_bias="0.504"
+        tools:layout_editor_absoluteY="211dp"
+        tools:layout_editor_absoluteX="59dp" />
 
 </android.support.constraint.ConstraintLayout>

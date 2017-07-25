@@ -46,5 +46,6 @@ public class Gameplay1alt extends BaseGameplay {
 
         //preserve the score on new gameplay screen
         score.setText(Controller.getInstance().getScore()+"");
+        animateRoundLabel();
     }
 }

@@ -4,9 +4,13 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,13 +25,17 @@ import butterknife.OnClick;
 
 public class BaseGameplay extends AppCompatActivity {
 
+
+    @BindView(R.id.round) TextView round;
+    @BindView(R.id.roundNumber) TextView roundNumber;
+
     public final int TIME_BETWEEN_POP_UPS = Controller.getInstance().getTIME_BETWEEN_POP_UPS();
     public int durationUpMove = Controller.getInstance().getDurationUpMove();
     public int durationDownMove = Controller.getInstance().getDurationDownMove();
 
 
     //time of each round defined in seconds
-    long timeToPlay = 30;
+    long timeToPlay = 10;
 //    int userScore=0;
 
     int pigImageBeforeHit = R.drawable.head;
@@ -374,6 +382,28 @@ public class BaseGameplay extends AppCompatActivity {
             }
         }
         startActivity(intent);
+    }
+
+    public void animateRoundLabel(){
+        Typeface frijole = Typeface.createFromAsset(getAssets(), "fonts/Frijole-Regular.ttf");
+        round.setText("round");
+        round.setTypeface(frijole);
+        Animation animation = new AlphaAnimation(1.0f, 0.0f);
+        animation.setDuration(2000);
+        animation.setFillAfter(true);
+        roundNumber.setText(Controller.getInstance().getRoundNumber()+"");
+        roundNumber.setTypeface(frijole);
+        Animation animation2 = new AlphaAnimation(1.0f, 0.0f);
+        animation2.setDuration(2000);
+        animation2.setFillAfter(true);
+        AnimationSet animationSet = new AnimationSet(true);
+        animationSet.addAnimation(animation);
+        animationSet.addAnimation(animation2);
+        animationSet.setDuration(2000);
+        animationSet.setFillAfter(true);
+        animationSet.start();
+        round.startAnimation(animation);
+        roundNumber.startAnimation(animation2);
     }
 
     @Override
